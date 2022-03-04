@@ -2460,7 +2460,7 @@
     <string name="invite_users_to_room_title">Invite Users</string>
     <string name="invite_friends">Invite friends</string>
     <!-- Note to translators: the translation MUST contain the string "${app_name}", which will be replaced by the application name -->
-    <string name="invite_friends_text">Hey, talk to me on ${app_name}: %s</string>
+    <string name="invite_friends_text">Hi, please talk with me on ${app_name}: %s</string>
     <!-- Note to translators: the translation MUST contain the string "${app_name}", which will be replaced by the application name -->
     <string name="invite_friends_rich_title">🔐️ Join me on ${app_name}</string>
     <string name="invitation_sent_to_one_user">Invitation sent to %1$s</string>
@@ -2954,4 +2954,7 @@
     <string name="room_message_notify_everyone">Notify the whole room</string>
     <string name="room_message_autocomplete_users">Users</string>
     <string name="room_message_autocomplete_notification">Room notification</string>
+    <string name="holedo_newss">News</string>
+    <string name="holedo_jobss">Jobs</string>
+    <string name="holedo_profilee">Profile</string>
 </resources>

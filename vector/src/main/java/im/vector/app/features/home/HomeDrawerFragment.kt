@@ -16,6 +16,8 @@
 
 package im.vector.app.features.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -94,6 +96,33 @@ class HomeDrawerFragment @Inject constructor(
                         )
                 startActivity(it, options.toBundle())
             }
+        }
+
+        views.newsbutton1.setOnClickListener {
+            val calci12 = sharedActionViewModel.session.myUserId
+            val calci13 = calci12.replace(":holedo.com", "")
+            val calci14 = calci13.replace("@", "")
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://news.holedo.im/?u=$calci14"))
+            startActivity(i)
+        }
+
+        views.jobsbutton1.setOnClickListener {
+            val calci123 = sharedActionViewModel.session.myUserId
+            val calci135 = calci123.replace(":holedo.com", "")
+            val calci147 = calci135.replace("@", "")
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://jobs.holedo.im/?u=$calci147"))
+            startActivity(i)
+        }
+
+        views.profileebutton1.setOnClickListener {
+
+            val usernameorigaa = sharedActionViewModel.session.myUserId
+            val usernamefinaa = usernameorigaa.replace(":holedo.com", "")
+            val usernamefinba = usernamefinaa.replace("@", "")
+
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://profile.holedo.im/$usernamefinba"))
+            startActivity(i)
+
         }
 
         views.homeDrawerInviteFriendButton.debouncedClicks {
