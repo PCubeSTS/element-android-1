@@ -98,6 +98,40 @@ class HomeDrawerFragment @Inject constructor(
             }
         }
 
+        views.community1.setOnClickListener {
+            val calci12 = sharedActionViewModel.session.myUserId
+            val calci13 = calci12.replace(":holedo.com", "")
+            val calci14 = calci13.replace("@", "")
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://community.holedo.im/?u=$calci14"))
+            startActivity(i)
+        }
+
+        views.about1.setOnClickListener {
+            val calci12 = sharedActionViewModel.session.myUserId
+            val calci13 = calci12.replace(":holedo.com", "")
+            val calci14 = calci13.replace("@", "")
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse(" https://about.holedo.im/?u=$calci14"))
+            startActivity(i)
+        }
+
+
+        views.Badges1.setOnClickListener {
+            val calci12 = sharedActionViewModel.session.myUserId
+            val calci13 = calci12.replace(":holedo.com", "")
+            val calci14 = calci13.replace("@", "")
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://badges.holedo.im/?u=$calci14"))
+            startActivity(i)
+        }
+
+        views.help1.setOnClickListener {
+            val calci12 = sharedActionViewModel.session.myUserId
+            val calci13 = calci12.replace(":holedo.com", "")
+            val calci14 = calci13.replace("@", "")
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://jobs.holedo.im/?u=$calci14"))
+            startActivity(i)
+        }
+
+
         views.newsbutton1.setOnClickListener {
             val calci12 = sharedActionViewModel.session.myUserId
             val calci13 = calci12.replace(":holedo.com", "")
