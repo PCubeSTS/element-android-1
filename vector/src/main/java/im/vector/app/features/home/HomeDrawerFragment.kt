@@ -16,13 +16,16 @@
 
 package im.vector.app.features.home
 
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import androidx.core.app.ActivityOptionsCompat
+
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import im.vector.app.BuildConfig
@@ -102,6 +105,27 @@ class HomeDrawerFragment @Inject constructor(
             val calci12 = sharedActionViewModel.session.myUserId
             val calci13 = calci12.replace(":holedo.com", "")
             val calci14 = calci13.replace("@", "")
+
+//            val url = "https://community.holedo.im/?u=$calci14"
+//            // initializing object for custom chrome tabs.
+//            // initializing object for custom chrome tabs.
+//            val customIntent = CustomTabsIntent.Builder()
+//
+//            // below line is setting toolbar color
+//            // for our custom chrome tab.
+//
+//            // below line is setting toolbar color
+//            // for our custom chrome tab.
+//            customIntent.setToolbarColor(ContextCompat.getColor(requireContext(), R.color.palette_element_green))
+//
+//            customIntent.setStartAnimations(requireContext(),android.R.anim.slide_in_left,android.R.anim.slide_out_right)  //animation for this
+//            // we are calling below method after
+//            // setting our toolbar color.
+//
+//            // we are calling below method after
+//            // setting our toolbar color.
+//            openCustomTab(requireActivity(), customIntent.build(), Uri.parse(url))
+
             val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://community.holedo.im/?u=$calci14"))
             startActivity(i)
         }
@@ -181,4 +205,27 @@ class HomeDrawerFragment @Inject constructor(
             navigator.openDebug(requireActivity())
         }
     }
+
+//    fun openCustomTab(activity: Activity, customTabsIntent: CustomTabsIntent, uri: Uri?) {
+//        // package name is the default package
+//        // for our custom chrome tab
+//        val packageName = "com.android.chrome"
+//        if (packageName != null) {
+//
+//            // we are checking if the package name is not null
+//            // if package name is not null then we are calling
+//            // that custom chrome tab with intent by passing its
+//            // package name.
+//            customTabsIntent.intent.setPackage(packageName)
+//
+//            // in that custom tab intent we are passing
+//            // our url which we have to browse.
+//            customTabsIntent.launchUrl(activity, uri!!)
+//        } else {
+//            // if the custom tabs fails to load then we are simply
+//            // redirecting our user to users device default browser.
+//            activity.startActivity(Intent(Intent.ACTION_VIEW, uri))
+//        }
+//    }
+
 }
