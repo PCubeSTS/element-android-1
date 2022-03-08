@@ -25,6 +25,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 
 import androidx.core.app.ActivityOptionsCompat
@@ -132,6 +133,11 @@ class HomeDrawerFragment @Inject constructor(
             val customTabsIntent = builder.build()
             customTabsIntent.launchUrl(requireContext(),Uri.parse(url))
 
+            CustomTabColorSchemeParams.Builder().setToolbarColor(ContextCompat.getColor(requireContext(),R.color.palette_element_green))
+            builder.setInstantAppsEnabled(true)
+            builder.setShowTitle(true)
+            builder.setStartAnimations(requireContext(), android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+              builder.setExitAnimations(requireContext(), android.R.anim.fade_in, android.R.anim.fade_out)
 
 
         }
