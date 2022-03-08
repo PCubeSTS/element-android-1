@@ -23,8 +23,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.browser.customtabs.CustomTabsIntent
 
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
 
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
@@ -59,6 +63,22 @@ class HomeDrawerFragment @Inject constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+      /*  val myWebView: WebView = view.findViewById(R.id.webview) //error coming here ,due to which app is crashing
+        myWebView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(
+                    view: WebView,
+                    url: String
+            ): Boolean {
+                view.loadUrl(url)
+                return true
+            }}
+
+        myWebView.settings.javaScriptEnabled = true
+        myWebView.settings.allowContentAccess = true
+        myWebView.settings.domStorageEnabled = true
+        myWebView.settings.useWideViewPort = true */ // important webview
+
+
 
         sharedActionViewModel = activityViewModelProvider.get(HomeSharedActionViewModel::class.java)
 
@@ -105,7 +125,16 @@ class HomeDrawerFragment @Inject constructor(
             val calci12 = sharedActionViewModel.session.myUserId
             val calci13 = calci12.replace(":holedo.com", "")
             val calci14 = calci13.replace("@", "")
+//            myWebView.loadUrl("https://community.holedo.im/?u=$calci14")
 
+            val url = "https://community.holedo.im/?u=$calci14"
+            val builder = CustomTabsIntent.Builder()
+            val customTabsIntent = builder.build()
+            customTabsIntent.launchUrl(requireContext(),Uri.parse(url))
+
+
+
+        }
 //            val url = "https://community.holedo.im/?u=$calci14"
 //            // initializing object for custom chrome tabs.
 //            // initializing object for custom chrome tabs.
@@ -126,14 +155,16 @@ class HomeDrawerFragment @Inject constructor(
 //            // setting our toolbar color.
 //            openCustomTab(requireActivity(), customIntent.build(), Uri.parse(url))
 
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://community.holedo.im/?u=$calci14"))
-            startActivity(i)
-        }
+//            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://community.holedo.im/?u=$calci14"))
+//            startActivity(i)
+//        }
 
         views.about1.setOnClickListener {
             val calci12 = sharedActionViewModel.session.myUserId
             val calci13 = calci12.replace(":holedo.com", "")
             val calci14 = calci13.replace("@", "")
+
+//            myWebView.loadUrl(" https://about.holedo.im/?u=$calci14")
             val i = Intent(Intent.ACTION_VIEW, Uri.parse(" https://about.holedo.im/?u=$calci14"))
             startActivity(i)
         }
