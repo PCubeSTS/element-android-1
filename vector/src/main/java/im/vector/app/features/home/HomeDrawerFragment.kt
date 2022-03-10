@@ -134,8 +134,8 @@ class HomeDrawerFragment @Inject constructor(
 
          val  urll13 = "https://community.holedo.im/?u=$calci14"
 //            Toast.makeText(requireContext(), urll13, Toast.LENGTH_LONG).show()
-            val intent13  = VectorWebViewActivity.getIntent(requireContext(), urll13)
-            startActivity(intent13)
+            val intentaa  = VectorWebViewActivity.getIntent(requireContext(), urll13)
+            startActivity(intentaa)
 
 
 
@@ -200,9 +200,13 @@ class HomeDrawerFragment @Inject constructor(
 //            startActivity(i)
 
             val  urll15 = "https://about.holedo.im/?u=$calci14"
-            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
-            intent13.putExtra("URL14",urll15)
-            startActivity(intent13)
+//            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+//            intent13.putExtra("URL14",urll15)
+//            startActivity(intent13)
+
+
+            val intentab  = VectorWebViewActivity.getIntent(requireContext(), urll15)
+            startActivity(intentab)
 
             // 2nd way to create chrome custom tabs...imp -----/start
         /*    val uri = Uri.parse("https://about.holedo.im/?u=$calci14")
@@ -231,9 +235,12 @@ class HomeDrawerFragment @Inject constructor(
 //            startActivity(i)
 
             val  urll17 = "https://badges.holedo.im/?u=$calci14"
-            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
-            intent13.putExtra("URL16",urll17)
-            startActivity(intent13)
+//            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+//            intent13.putExtra("URL16",urll17)
+//            startActivity(intent13)
+
+            val intentac  = VectorWebViewActivity.getIntent(requireContext(), urll17)
+            startActivity(intentac)
 
         }
 
@@ -245,10 +252,13 @@ class HomeDrawerFragment @Inject constructor(
 //            startActivity(i)
 
             val  urll19 = "https://jobs.holedo.im/?u=$calci14"
-            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
-            intent13.putExtra("URL18",urll19)
-            startActivity(intent13)
+//            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+//            intent13.putExtra("URL18",urll19)
+//            startActivity(intent13)
 
+
+            val intentad  = VectorWebViewActivity.getIntent(requireContext(), urll19)
+            startActivity(intentad)
         }
 
 
@@ -260,9 +270,12 @@ class HomeDrawerFragment @Inject constructor(
 //            startActivity(i)
 
             val  urll21 = "https://news.holedo.im/?u=$calci14"
-            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
-            intent13.putExtra("URL20",urll21)
-            startActivity(intent13)
+//            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+//            intent13.putExtra("URL20",urll21)
+//            startActivity(intent13)
+
+            val intentae  = VectorWebViewActivity.getIntent(requireContext(), urll21)
+            startActivity(intentae)
 
         }
 
@@ -274,9 +287,12 @@ class HomeDrawerFragment @Inject constructor(
 //            startActivity(i)
 
             val  urll23 = "https://jobs.holedo.im/?u=$calci147"
-            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
-            intent13.putExtra("URL22",urll23)
-            startActivity(intent13)
+//            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+//            intent13.putExtra("URL22",urll23)
+//            startActivity(intent13)
+
+            val intentaf  = VectorWebViewActivity.getIntent(requireContext(), urll23)
+            startActivity(intentaf)
 
         }
 
@@ -290,10 +306,12 @@ class HomeDrawerFragment @Inject constructor(
 //            startActivity(i)
 
             val  urll25 = "https://profile.holedo.im/$usernamefinba"
-            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
-            intent13.putExtra("URL24",urll25)
-            startActivity(intent13)
+//            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+//            intent13.putExtra("URL24",urll25)
+//            startActivity(intent13)
 
+            val intentag  = VectorWebViewActivity.getIntent(requireContext(), urll25)
+            startActivity(intentag)
 
         }
 

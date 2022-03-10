@@ -18,9 +18,12 @@ package im.vector.app.features.webview
 
 import android.content.Context
 import android.content.Intent
+import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebView
+import android.widget.ProgressBar
 import dagger.hilt.android.AndroidEntryPoint
+import im.vector.app.R
 import im.vector.app.core.di.ActiveSessionHolder
 import im.vector.app.core.platform.VectorBaseActivity
 import im.vector.app.databinding.ActivityVectorWebViewBinding
@@ -73,7 +76,7 @@ class VectorWebViewActivity : VectorBaseActivity<ActivityVectorWebViewBinding>()
         val cookieManager = android.webkit.CookieManager.getInstance()
         cookieManager.setAcceptThirdPartyCookies(views.simpleWebview, true)
 
-//        val url = intent.extras?.getString(EXTRA_URL)
+        val url = intent.extras?.getString(EXTRA_URL)?: return
         val title = intent.extras?.getString(EXTRA_TITLE, USE_TITLE_FROM_WEB_PAGE)
         if (title != USE_TITLE_FROM_WEB_PAGE) {
             setTitle(title)
@@ -89,18 +92,42 @@ class VectorWebViewActivity : VectorBaseActivity<ActivityVectorWebViewBinding>()
                 }
             }
         }
-        //views.simpleWebview.loadUrl(url)
+        views.simpleWebview.loadUrl(url)
 
 
-        val link1 = intent.getStringExtra("URL12")
+        /*val link1 = intent.getStringExtra("URL12")
 
-        views.simpleWebview.loadUrl(link1!!)
+        views.simpleWebview.loadUrl(link1!!)*/
+
+        val progresso = findViewById<ProgressBar>(R.id.simple_webview_loader)
+
+        progresso.visibility = View.VISIBLE
+
+//        getBinding().simpleWebviewLoader.visibility = View.VISIBLE
 
     }
 
     /* ==========================================================================================
      * UI event
      * ========================================================================================== */
+
+    // Overriding WebViewClient functions
+    inner class WebViewClient : android.webkit.WebViewClient() {
+
+        // Load the URL
+        override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+            views.simpleWebview.loadUrl(url)
+            return false
+        }
+
+        // ProgressBar will disappear once page is loaded
+        override fun onPageFinished(view: WebView, url: String) {
+            super.onPageFinished(view, url)
+            val progresso = findViewById<ProgressBar>(R.id.simple_webview_loader)
+
+            progresso.visibility = View.INVISIBLE
+        }
+    }
 
     override fun onBackPressed() {
         if (views.simpleWebview.canGoBack()) {
