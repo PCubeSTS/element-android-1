@@ -18,6 +18,7 @@ package im.vector.app.features.home
 
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,12 +26,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
-
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
-
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import im.vector.app.BuildConfig
@@ -45,6 +45,7 @@ import im.vector.app.features.settings.VectorPreferences
 import im.vector.app.features.settings.VectorSettingsActivity
 import im.vector.app.features.spaces.SpaceListFragment
 import im.vector.app.features.usercode.UserCodeActivity
+import im.vector.app.features.webview.VectorWebViewActivity
 import im.vector.app.features.workers.signout.SignOutUiWorker
 import org.matrix.android.sdk.api.session.Session
 import org.matrix.android.sdk.api.util.toMatrixItem
@@ -64,7 +65,8 @@ class HomeDrawerFragment @Inject constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-      /*  val myWebView: WebView = view.findViewById(R.id.webview) //error coming here ,due to which app is crashing
+
+     /*   val myWebView: WebView = view.findViewById(R.id.simple_webview) //error coming here ,due to which app is crashing
         myWebView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(
                     view: WebView,
@@ -77,7 +79,7 @@ class HomeDrawerFragment @Inject constructor(
         myWebView.settings.javaScriptEnabled = true
         myWebView.settings.allowContentAccess = true
         myWebView.settings.domStorageEnabled = true
-        myWebView.settings.useWideViewPort = true */ // important webview
+        myWebView.settings.useWideViewPort = true    // important webview  */
 
 
 
@@ -126,21 +128,44 @@ class HomeDrawerFragment @Inject constructor(
             val calci12 = sharedActionViewModel.session.myUserId
             val calci13 = calci12.replace(":holedo.com", "")
             val calci14 = calci13.replace("@", "")
+
+
 //            myWebView.loadUrl("https://community.holedo.im/?u=$calci14")
 
+         val  urll13 = "https://community.holedo.im/?u=$calci14"
+//            Toast.makeText(requireContext(), urll13, Toast.LENGTH_LONG).show()
+            val intent13  = VectorWebViewActivity.getIntent(requireContext(), urll13)
+            startActivity(intent13)
+
+
+
+            // 1st way to create chrome custom tabs...imp -----/start
+/*
             val url = "https://community.holedo.im/?u=$calci14"
             val builder = CustomTabsIntent.Builder()
             val customTabsIntent = builder.build()
             customTabsIntent.launchUrl(requireContext(),Uri.parse(url))
 
-            CustomTabColorSchemeParams.Builder().setToolbarColor(ContextCompat.getColor(requireContext(),R.color.palette_element_green))
+//            CustomTabsIntent.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+//            builder.setToolbarColor(ContextCompat.getColor(requireContext(),R.color.palette_element_green))
+            CustomTabColorSchemeParams.Builder().setToolbarColor(ContextCompat.getColor(requireContext(),R.color.palette_aqua))
             builder.setInstantAppsEnabled(true)
             builder.setShowTitle(true)
             builder.setStartAnimations(requireContext(), android.R.anim.slide_in_left, android.R.anim.slide_out_right)
               builder.setExitAnimations(requireContext(), android.R.anim.fade_in, android.R.anim.fade_out)
+//               builder.setColorScheme()
+//            1st way to create chrome custom tabs...imp -----/end
 
+            val colorInt: Int = Color.parseColor("#FF0000") //red
+
+            val defaultColors = CustomTabColorSchemeParams.Builder()
+                    .setToolbarColor(colorInt)
+                    .build()
+            builder.setDefaultColorSchemeParams(defaultColors) */
 
         }
+
+
 //            val url = "https://community.holedo.im/?u=$calci14"
 //            // initializing object for custom chrome tabs.
 //            // initializing object for custom chrome tabs.
@@ -170,9 +195,31 @@ class HomeDrawerFragment @Inject constructor(
             val calci13 = calci12.replace(":holedo.com", "")
             val calci14 = calci13.replace("@", "")
 
-//            myWebView.loadUrl(" https://about.holedo.im/?u=$calci14")
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse(" https://about.holedo.im/?u=$calci14"))
-            startActivity(i)
+//            myWebView.loadUrl("https://about.holedo.im/?u=$calci14")
+//            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://about.holedo.im/?u=$calci14"))
+//            startActivity(i)
+
+            val  urll15 = "https://about.holedo.im/?u=$calci14"
+            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+            intent13.putExtra("URL14",urll15)
+            startActivity(intent13)
+
+            // 2nd way to create chrome custom tabs...imp -----/start
+        /*    val uri = Uri.parse("https://about.holedo.im/?u=$calci14")
+            val intentBuilder = CustomTabsIntent.Builder()
+            val params = CustomTabColorSchemeParams.Builder()
+                    .setNavigationBarColor(ContextCompat.getColor(requireActivity(), R.color.palette_grape))
+                    .setToolbarColor(ContextCompat.getColor(requireActivity(), R.color.palette_prune))
+                    .setSecondaryToolbarColor(ContextCompat.getColor(requireActivity(), R.color.palette_melon))
+                    .build()
+            intentBuilder.setColorSchemeParams(CustomTabsIntent.COLOR_SCHEME_DARK, params)
+            intentBuilder.setStartAnimations(requireActivity(), R.anim.animation_slide_in_right, R.anim.animation_slide_out_left)
+            intentBuilder.setExitAnimations(requireActivity(), android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+            val customTabsIntent = intentBuilder.build()
+            customTabsIntent.launchUrl(requireActivity(), uri) */
+
+            // 2nd way to create chrome custom tabs...imp -----/ends
+
         }
 
 
@@ -180,16 +227,28 @@ class HomeDrawerFragment @Inject constructor(
             val calci12 = sharedActionViewModel.session.myUserId
             val calci13 = calci12.replace(":holedo.com", "")
             val calci14 = calci13.replace("@", "")
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://badges.holedo.im/?u=$calci14"))
-            startActivity(i)
+//            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://badges.holedo.im/?u=$calci14"))
+//            startActivity(i)
+
+            val  urll17 = "https://badges.holedo.im/?u=$calci14"
+            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+            intent13.putExtra("URL16",urll17)
+            startActivity(intent13)
+
         }
 
         views.help1.setOnClickListener {
             val calci12 = sharedActionViewModel.session.myUserId
             val calci13 = calci12.replace(":holedo.com", "")
             val calci14 = calci13.replace("@", "")
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://jobs.holedo.im/?u=$calci14"))
-            startActivity(i)
+//            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://jobs.holedo.im/?u=$calci14"))
+//            startActivity(i)
+
+            val  urll19 = "https://jobs.holedo.im/?u=$calci14"
+            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+            intent13.putExtra("URL18",urll19)
+            startActivity(intent13)
+
         }
 
 
@@ -197,16 +256,28 @@ class HomeDrawerFragment @Inject constructor(
             val calci12 = sharedActionViewModel.session.myUserId
             val calci13 = calci12.replace(":holedo.com", "")
             val calci14 = calci13.replace("@", "")
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://news.holedo.im/?u=$calci14"))
-            startActivity(i)
+//            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://news.holedo.im/?u=$calci14"))
+//            startActivity(i)
+
+            val  urll21 = "https://news.holedo.im/?u=$calci14"
+            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+            intent13.putExtra("URL20",urll21)
+            startActivity(intent13)
+
         }
 
         views.jobsbutton1.setOnClickListener {
             val calci123 = sharedActionViewModel.session.myUserId
             val calci135 = calci123.replace(":holedo.com", "")
             val calci147 = calci135.replace("@", "")
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://jobs.holedo.im/?u=$calci147"))
-            startActivity(i)
+//            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://jobs.holedo.im/?u=$calci147"))
+//            startActivity(i)
+
+            val  urll23 = "https://jobs.holedo.im/?u=$calci147"
+            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+            intent13.putExtra("URL22",urll23)
+            startActivity(intent13)
+
         }
 
         views.profileebutton1.setOnClickListener {
@@ -215,8 +286,14 @@ class HomeDrawerFragment @Inject constructor(
             val usernamefinaa = usernameorigaa.replace(":holedo.com", "")
             val usernamefinba = usernamefinaa.replace("@", "")
 
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://profile.holedo.im/$usernamefinba"))
-            startActivity(i)
+//            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://profile.holedo.im/$usernamefinba"))
+//            startActivity(i)
+
+            val  urll25 = "https://profile.holedo.im/$usernamefinba"
+            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+            intent13.putExtra("URL24",urll25)
+            startActivity(intent13)
+
 
         }
 

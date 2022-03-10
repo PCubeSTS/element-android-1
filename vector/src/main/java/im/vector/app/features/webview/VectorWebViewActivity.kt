@@ -73,7 +73,7 @@ class VectorWebViewActivity : VectorBaseActivity<ActivityVectorWebViewBinding>()
         val cookieManager = android.webkit.CookieManager.getInstance()
         cookieManager.setAcceptThirdPartyCookies(views.simpleWebview, true)
 
-        val url = intent.extras?.getString(EXTRA_URL) ?: return
+//        val url = intent.extras?.getString(EXTRA_URL)
         val title = intent.extras?.getString(EXTRA_TITLE, USE_TITLE_FROM_WEB_PAGE)
         if (title != USE_TITLE_FROM_WEB_PAGE) {
             setTitle(title)
@@ -89,7 +89,13 @@ class VectorWebViewActivity : VectorBaseActivity<ActivityVectorWebViewBinding>()
                 }
             }
         }
-        views.simpleWebview.loadUrl(url)
+        //views.simpleWebview.loadUrl(url)
+
+
+        val link1 = intent.getStringExtra("URL12")
+
+        views.simpleWebview.loadUrl(link1!!)
+
     }
 
     /* ==========================================================================================
