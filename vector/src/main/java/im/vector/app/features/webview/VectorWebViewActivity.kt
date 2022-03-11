@@ -131,16 +131,11 @@ class VectorWebViewActivity : VectorBaseActivity<ActivityVectorWebViewBinding>()
 
             }
         }
-        /*val link1 = intent.getStringExtra("URL12")
-
-        views.simpleWebview.loadUrl(link1!!)*/
 
 
 
 
 
-
-//        getBinding().simpleWebviewLoader.visibility = View.VISIBLE
 
 
 
