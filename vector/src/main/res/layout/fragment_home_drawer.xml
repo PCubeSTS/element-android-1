@@ -273,7 +273,7 @@
         app:icon="@drawable/ic_address_card"
         app:iconGravity="textStart"
         app:iconSize="20dp"
-        app:layout_constraintBottom_toTopOf="@id/help1"
+        app:layout_constraintBottom_toTopOf="@id/homeDrawerHeaderSettingsView"
         android:layout_marginStart="19dp"
         android:paddingStart="19dp"
         app:layout_constraintTop_toBottomOf="@id/Badges1"
@@ -282,7 +282,24 @@
 
 
 
-
+    <TextView
+        android:id="@+id/homeDrawerHeaderSettingsView"
+        style="@style/Widget.Vector.TextView.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:background="?attr/selectableItemBackground"
+        android:drawablePadding="4dp"
+        android:gravity="center_vertical"
+        android:minWidth="80dp"
+        android:paddingStart="20dp"
+        android:minHeight="42dp"
+        android:text="@string/settings"
+        app:layout_constraintTop_toBottomOf="@id/profileebutton1"
+        app:drawableStartCompat="@drawable/ic_settings_18dp"
+        app:drawableTint="?vctr_content_secondary"
+        app:layout_constraintBottom_toTopOf="@id/help1"
+        app:tint="?vctr_content_secondary"
+        tools:ignore="MissingPrefix,RtlSymmetry" />
 
 
 
@@ -302,30 +319,13 @@
         app:icon="@drawable/ic_baseline_help_outline_24"
         app:iconGravity="textStart"
         app:iconSize="20dp"
-        app:layout_constraintBottom_toTopOf="@id/homeDrawerHeaderSettingsView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeDrawerHeaderSettingsView"
         android:layout_marginStart="19dp"
         android:paddingStart="6dp"
-        app:layout_constraintTop_toBottomOf="@id/profileebutton1"
         tools:ignore="MissingPrefix,RtlSymmetry" />
 
-    <TextView
-        android:id="@+id/homeDrawerHeaderSettingsView"
-        style="@style/Widget.Vector.TextView.Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:drawablePadding="9dp"
-        android:gravity="center_vertical"
-        android:minWidth="120dp"
-        android:minHeight="52dp"
-        android:padding="16dp"
-        android:text="@string/settings"
-        app:drawableStartCompat="@drawable/ic_settings_18dp"
-        app:drawableTint="?vctr_content_secondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:tint="?vctr_content_secondary"
-        tools:ignore="MissingPrefix" />
+
 
     <TextView
         android:id="@+id/homeDrawerHeaderSignoutView"
