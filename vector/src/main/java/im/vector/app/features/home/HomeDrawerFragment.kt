@@ -299,13 +299,18 @@ class HomeDrawerFragment @Inject constructor(
         views.profileebutton1.setOnClickListener {
 
             val usernameorigaa = sharedActionViewModel.session.myUserId
+            // usernameorigaa = @appsdev_tanmay:holedo.com
             val usernamefinaa = usernameorigaa.replace(":holedo.com", "")
+            // usernamefinaa = @appsdev_tanmay
             val usernamefinba = usernamefinaa.replace("@", "")
+            // usernamefinba = appsdev_tanmay
 
 //            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://profile.holedo.im/$usernamefinba"))
 //            startActivity(i)
 
             val  urll25 = "https://profile.holedo.im/$usernamefinba"
+
+            //urll25 = "https://profile.holedo.im/appsdev_tanmay"
 //            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
 //            intent13.putExtra("URL24",urll25)
 //            startActivity(intent13)
