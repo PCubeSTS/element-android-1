@@ -125,6 +125,7 @@ class HomeDrawerFragment @Inject constructor(
         }
 
         views.community1.setOnClickListener {
+
             val calci12 = sharedActionViewModel.session.myUserId
             val calci13 = calci12.replace(":holedo.com", "")
             val calci14 = calci13.replace("@", "")

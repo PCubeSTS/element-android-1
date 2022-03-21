@@ -124,15 +124,17 @@
 
     <Button
         android:id="@+id/homeDrawerInviteFriendButton"
-        style="@style/Widget.Vector.Button.Text.impo"
+        style="@style/Widget.Vector.Button.Text"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginTop="2dp"
         android:paddingStart="18dp"
+        android:textColor="@color/palette_element_darkbluee"
         android:paddingEnd="20dp"
         android:layout_marginBottom="2dp"
         android:gravity="center"
         android:insetTop="0dp"
+        android:drawableTint="@color/palette_element_darkbluee"
         app:layout_constraintTop_toBottomOf="@id/homeDrawerBottomSeparator"
         android:insetBottom="0dp"
         android:layout_marginStart="10dp"
@@ -146,7 +148,7 @@
 
     <Button
         android:id="@+id/community1"
-        style="@style/Widget.Vector.Button.Text.impo"
+        style="@style/Widget.Vector.Button.Text"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginTop="4dp"
@@ -168,7 +170,7 @@
 
     <Button
         android:id="@+id/about1"
-        style="@style/Widget.Vector.Button.Text.impo"
+        style="@style/Widget.Vector.Button.Text"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginTop="4dp"
@@ -192,7 +194,7 @@
 
     <Button
         android:id="@+id/newsbutton1"
-        style="@style/Widget.Vector.Button.Text.impo"
+        style="@style/Widget.Vector.Button.Text"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginTop="4dp"
@@ -214,7 +216,7 @@
 
     <Button
         android:id="@+id/jobsbutton1"
-        style="@style/Widget.Vector.Button.Text.impo"
+        style="@style/Widget.Vector.Button.Text"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginTop="4dp"
@@ -237,7 +239,7 @@
 
     <Button
         android:id="@+id/Badges1"
-        style="@style/Widget.Vector.Button.Text.impo"
+        style="@style/Widget.Vector.Button.Text"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginTop="4dp"
@@ -259,7 +261,7 @@
 
     <Button
         android:id="@+id/profileebutton1"
-        style="@style/Widget.Vector.Button.Text.impo"
+        style="@style/Widget.Vector.Button.Text"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginTop="4dp"
@@ -285,7 +287,7 @@
     <TextView
         android:id="@+id/homeDrawerHeaderSettingsView"
         android:layout_width="wrap_content"
-        style="@style/Widget.Vector.Button.Text.impo"
+        style="@style/Widget.Vector.Button.Text"
         android:layout_height="26dp"
         android:background="?attr/selectableItemBackground"
         android:drawablePadding="4dp"
@@ -297,14 +299,16 @@
         android:text="@string/settings"
         app:layout_constraintTop_toBottomOf="@id/profileebutton1"
         app:drawableStartCompat="@drawable/ic_settings_18dp"
+        app:drawableTint="?vctr_content_secondary"
         app:layout_constraintBottom_toTopOf="@id/help1"
+        app:tint="?vctr_content_secondary"
         tools:ignore="MissingPrefix,RtlSymmetry" />
 
 
 
     <Button
         android:id="@+id/help1"
-        style="@style/Widget.Vector.Button.Text.impo"
+        style="@style/Widget.Vector.Button.Text"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginTop="4dp"

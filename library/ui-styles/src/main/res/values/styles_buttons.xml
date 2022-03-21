@@ -33,6 +33,12 @@
         <!-- Keep default colors from the theme -->
     </style>
 
+    <style name="VectorMaterialNew">
+        <item name="colorPrimary">@color/palette_element_darkbluee</item>
+        <item name="colorSecondary">@color/palette_element_darkbluee</item>
+    </style>
+
+
     <style name="Widget.Vector.Button.Unelevated" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
@@ -58,6 +64,7 @@
         <item name="cornerRadius">8dp</item>
         <item name="lineHeight">24sp</item>
     </style>
+
 
     <style name="Widget.Vector.Button.Text.OnPrimary">
         <item name="colorControlHighlight">?colorOnPrimary</item>
@@ -87,5 +94,24 @@
         <item name="android:minHeight">44dp</item>
         <item name="cornerRadius">10dp</item>
     </style>
+
+<!--    <style name="Widget.Vector.Button.Text2" parent="Theme.Vector.BottomSheetDialog.Light2">-->
+<!--        <item name="colorControlHighlight">?colorOnSurface</item>-->
+<!--        <item name="materialThemeOverlay">@style/VectorMaterialThemeOverlayPositive</item>-->
+<!--        <item name="android:textAppearance">@style/TextAppearance.Vector.Button</item>-->
+<!--        <item name="cornerRadius">8dp</item>-->
+<!--        <item name="lineHeight">24sp</item>-->
+<!--    </style>-->
+
+    <style name="Widget.Vector.Button.Text.impo" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="colorControlHighlight">@color/palette_element_darkbluee</item>
+        <item name="materialThemeOverlay">@style/VectorMaterialNew</item>
+        <item name="colorPrimary">@color/palette_element_darkbluee</item>
+        <item name="colorSecondary">@color/palette_element_darkbluee</item>
+        <item name="android:textAppearance">@style/TextAppearance.Vector.Button</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="lineHeight">24sp</item>
+    </style>
+
 
 </resources>
