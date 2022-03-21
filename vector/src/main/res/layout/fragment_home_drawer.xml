@@ -179,7 +179,7 @@
         android:padding="0dp"
         android:text="@string/holedo_aboutt"
         android:textAllCaps="false"
-        app:icon="@drawable/ic_baseline_error_outline_24"
+        app:icon="@drawable/ic_baseline_alternate_email_24"
         app:iconGravity="textStart"
         app:iconSize="20dp"
         app:layout_constraintBottom_toTopOf="@id/newsbutton1"
