@@ -18,8 +18,12 @@ package im.vector.app.features
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.Window
+import android.view.WindowInsets
+import android.view.WindowManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -113,6 +117,17 @@ class MainActivity : VectorBaseActivity<ActivityMainBinding>(), UnlockedActivity
         } else {
             startNextActivityAndFinish()
         }
+
+//        supportActionBar?.hide()
+//        @Suppress("DEPRECATION")
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            window.insetsController?.hide(WindowInsets.Type.statusBars())
+//        } else {
+//            window.setFlags(
+//                    WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                    WindowManager.LayoutParams.FLAG_FULLSCREEN
+//            )
+//        }
     }
 
     private fun clearNotifications() {

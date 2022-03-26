@@ -21,6 +21,7 @@
     <color name="palette_prune">#E57428</color>
     <color name="palette_links">#32A3FD</color>
     <color name="background_black">#272E41</color>
+    <color name="palette_element_green1">#7dc81b </color>
 
     <!-- For light themes -->
     <color name="palette_gray_25">#F4F6FA</color>
