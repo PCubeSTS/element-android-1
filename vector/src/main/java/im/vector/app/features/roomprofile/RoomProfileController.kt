@@ -120,6 +120,9 @@ class RoomProfileController @Inject constructor(
             }
         }
 
+
+
+
         var encryptionMisconfigured = false
         val e2eInfoText = if (roomSummary.isEncrypted) {
             if (roomSummary.roomEncryptionAlgorithm is RoomEncryptionAlgorithm.SupportedAlgorithm) {
