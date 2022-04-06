@@ -1871,7 +1871,7 @@
 
     <string name="login_server_title">Sign in </string>
     <string name="login_server_text">Just like email, accounts have one home, although you can talk to anyone</string>
-    <string name="login_server_matrix_org_text">Join the global hospitality hub free</string>
+    <string name="login_server_matrix_org_text">Better hospitality networking</string>
     <string name="login_server_modular_text">Premium hosting for organisations</string>
     <string name="login_server_modular_learn_more">Learn more</string>
     <string name="login_server_other_title">Other</string>

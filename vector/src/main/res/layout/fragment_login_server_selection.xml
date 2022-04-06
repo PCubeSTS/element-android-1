@@ -34,6 +34,7 @@
                 android:id="@+id/loginServerText"
                 style="@style/Widget.Vector.TextView.Body"
                 android:layout_width="0dp"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/layout_vertical_margin"
                 android:gravity="start"

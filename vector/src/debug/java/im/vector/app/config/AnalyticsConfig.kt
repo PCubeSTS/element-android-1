@@ -23,5 +23,5 @@ val analyticsConfig: AnalyticsConfig = object : AnalyticsConfig {
     override val isEnabled = BuildConfig.APPLICATION_ID == "im.vector.app.debug"
     override val postHogHost = "https://posthog-poc.lab.element.dev"
     override val postHogApiKey = "rs-pJjsYJTuAkXJfhaMmPUNBhWliDyTKLOOxike6ck8"
-    override val policyLink = "https://element.io/cookie-policy"
+    override val policyLink = "https://www.holedo.im/privacy"
 }
