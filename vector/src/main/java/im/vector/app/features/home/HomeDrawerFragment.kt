@@ -200,17 +200,17 @@ class HomeDrawerFragment @Inject constructor(
 //            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://about.holedo.im/?u=$calci14"))
 //            startActivity(i)
 
-            val  urll15 = "https://about.holedo.im/?u=$calci14"
-//            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
-//            intent13.putExtra("URL14",urll15)
-//            startActivity(intent13)
-
-
-            val intentab  = VectorWebViewActivity.getIntent(requireContext(), urll15)
-            startActivity(intentab)
+//            val  urll15 = "https://about.holedo.im/?u=$calci14"
+////            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
+////            intent13.putExtra("URL14",urll15)
+////            startActivity(intent13)
+//
+//
+//            val intentab  = VectorWebViewActivity.getIntent(requireContext(), urll15)
+//            startActivity(intentab)
 
             // 2nd way to create chrome custom tabs...imp -----/start
-        /*    val uri = Uri.parse("https://about.holedo.im/?u=$calci14")
+           val uri = Uri.parse("https://about.holedo.im/?u=$calci14")
             val intentBuilder = CustomTabsIntent.Builder()
             val params = CustomTabColorSchemeParams.Builder()
                     .setNavigationBarColor(ContextCompat.getColor(requireActivity(), R.color.palette_grape))
@@ -221,7 +221,7 @@ class HomeDrawerFragment @Inject constructor(
             intentBuilder.setStartAnimations(requireActivity(), R.anim.animation_slide_in_right, R.anim.animation_slide_out_left)
             intentBuilder.setExitAnimations(requireActivity(), android.R.anim.slide_in_left, android.R.anim.slide_out_right)
             val customTabsIntent = intentBuilder.build()
-            customTabsIntent.launchUrl(requireActivity(), uri) */
+            customTabsIntent.launchUrl(requireActivity(), uri)
 
             // 2nd way to create chrome custom tabs...imp -----/ends
 
