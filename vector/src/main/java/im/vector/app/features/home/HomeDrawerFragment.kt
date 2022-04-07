@@ -309,9 +309,11 @@ class HomeDrawerFragment @Inject constructor(
 //            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://profile.holedo.im/$usernamefinba"))
 //            startActivity(i)
 
-            val  urll25 = "https://profile.holedo.im/$usernamefinba"
+            val  urll25 = "https://profile.holedo.im/?u=$usernamefinba"
 
             //urll25 = "https://profile.holedo.im/appsdev_tanmay"
+
+
 //            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
 //            intent13.putExtra("URL24",urll25)
 //            startActivity(intent13)
