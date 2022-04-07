@@ -53,7 +53,7 @@ class VectorWebViewActivity : VectorBaseActivity<ActivityVectorWebViewBinding>()
                 .allowBack()
         waitingView = views.simpleWebviewLoader
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.palette_element_green)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.palette_element_greenetc)
 
         views.simpleWebviewLoader.visibility = View.VISIBLE
 
