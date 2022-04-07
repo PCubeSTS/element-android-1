@@ -54,12 +54,16 @@ class VectorWebViewActivity : VectorBaseActivity<ActivityVectorWebViewBinding>()
         waitingView = views.simpleWebviewLoader
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.palette_element_greenetc)
-        actionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
+//        actionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
 //        actionBar.setBackgroundDrawable(R.color.palette_black_800)
 
-        val colorDrawable = ColorDrawable(Color.parseColor("#f6f7fd"))
+//        val colorDrawable = ColorDrawable(Color.parseColor("#f6f7fd"))
+//        actionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
 
-        actionBar?.setBackgroundDrawable(colorDrawable)
+//        actionBar?.setBackgroundDrawable(colorDrawable)
+
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+//        supportActionBar?.setHomeAsUpIndicator(R.color.mapbox_blue);
 
         views.simpleWebviewLoader.visibility = View.VISIBLE
 

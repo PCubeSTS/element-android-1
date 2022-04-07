@@ -15,9 +15,10 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/webview_toolbar"
             android:layout_width="match_parent"
-            app:titleTextColor="@color/palette_white"
-            android:background="@color/palette_element_green"
+            app:titleTextColor="@color/palette_element_greenetc"
+            android:background="@color/palette_element_greenetc"
             android:layout_height="?attr/actionBarSize"
+            app:navigationIconTint="@color/element_accent_dark"
             tools:title="Title of the web page" />
 
     </com.google.android.material.appbar.AppBarLayout>
