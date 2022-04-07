@@ -18,11 +18,11 @@ package im.vector.app.features.webview
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 import im.vector.app.R
@@ -54,6 +54,12 @@ class VectorWebViewActivity : VectorBaseActivity<ActivityVectorWebViewBinding>()
         waitingView = views.simpleWebviewLoader
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.palette_element_greenetc)
+        actionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
+//        actionBar.setBackgroundDrawable(R.color.palette_black_800)
+
+        val colorDrawable = ColorDrawable(Color.parseColor("#f6f7fd"))
+
+        actionBar?.setBackgroundDrawable(colorDrawable)
 
         views.simpleWebviewLoader.visibility = View.VISIBLE
 
