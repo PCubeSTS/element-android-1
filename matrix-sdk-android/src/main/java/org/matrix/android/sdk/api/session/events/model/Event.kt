@@ -201,7 +201,13 @@ data class Event(
      */
     fun getDecryptedTextSummary(): String? {
         if (isRedacted()) return "Message Deleted"
-        val text = getDecryptedValue() ?: return null
+        val text = getDecryptedValue() ?: run {
+            if (isPoll()) {
+                return getPollQuestion() ?: "created a poll."
+            }
+            return null
+        }
+
         return when {
             isReplyRenderedInThread() || isQuote() -> ContentUtils.extractUsefulTextFromReply(text)
             isFileMessage()                        -> "sent a file."
@@ -296,60 +302,70 @@ data class Event(
     }
 }
 
+/**
+ * Return the value of "content.msgtype", if the Event type is "m.room.message"
+ * and if the content has it, and if it is a String
+ */
+fun Event.getMsgType(): String? {
+    if (getClearType() != EventType.MESSAGE) return null
+    return getClearContent()?.get(MessageContent.MSG_TYPE_JSON_KEY) as? String
+}
+
 fun Event.isTextMessage(): Boolean {
-    return getClearType() == EventType.MESSAGE &&
-            when (getClearContent()?.get(MessageContent.MSG_TYPE_JSON_KEY)) {
-                MessageType.MSGTYPE_TEXT,
-                MessageType.MSGTYPE_EMOTE,
-                MessageType.MSGTYPE_NOTICE -> true
-                else                       -> false
-            }
+    return when (getMsgType()) {
+        MessageType.MSGTYPE_TEXT,
+        MessageType.MSGTYPE_EMOTE,
+        MessageType.MSGTYPE_NOTICE -> true
+        else                       -> false
+    }
 }
 
 fun Event.isImageMessage(): Boolean {
-    return getClearType() == EventType.MESSAGE &&
-            when (getClearContent()?.get(MessageContent.MSG_TYPE_JSON_KEY)) {
-                MessageType.MSGTYPE_IMAGE -> true
-                else                      -> false
-            }
+    return when (getMsgType()) {
+        MessageType.MSGTYPE_IMAGE -> true
+        else                      -> false
+    }
 }
 
 fun Event.isVideoMessage(): Boolean {
-    return getClearType() == EventType.MESSAGE &&
-            when (getClearContent()?.get(MessageContent.MSG_TYPE_JSON_KEY)) {
-                MessageType.MSGTYPE_VIDEO -> true
-                else                      -> false
-            }
+    return when (getMsgType()) {
+        MessageType.MSGTYPE_VIDEO -> true
+        else                      -> false
+    }
 }
 
 fun Event.isAudioMessage(): Boolean {
-    return getClearType() == EventType.MESSAGE &&
-            when (getClearContent()?.get(MessageContent.MSG_TYPE_JSON_KEY)) {
-                MessageType.MSGTYPE_AUDIO -> true
-                else                      -> false
-            }
+    return when (getMsgType()) {
+        MessageType.MSGTYPE_AUDIO -> true
+        else                      -> false
+    }
 }
 
 fun Event.isFileMessage(): Boolean {
-    return getClearType() == EventType.MESSAGE &&
-            when (getClearContent()?.get(MessageContent.MSG_TYPE_JSON_KEY)) {
-                MessageType.MSGTYPE_FILE -> true
-                else                     -> false
-            }
+    return when (getMsgType()) {
+        MessageType.MSGTYPE_FILE -> true
+        else                     -> false
+    }
 }
 
 fun Event.isAttachmentMessage(): Boolean {
-    return getClearType() == EventType.MESSAGE &&
-            when (getClearContent()?.get(MessageContent.MSG_TYPE_JSON_KEY)) {
-                MessageType.MSGTYPE_IMAGE,
-                MessageType.MSGTYPE_AUDIO,
-                MessageType.MSGTYPE_VIDEO,
-                MessageType.MSGTYPE_FILE -> true
-                else                     -> false
-            }
+    return when (getMsgType()) {
+        MessageType.MSGTYPE_IMAGE,
+        MessageType.MSGTYPE_AUDIO,
+        MessageType.MSGTYPE_VIDEO,
+        MessageType.MSGTYPE_FILE -> true
+        else                     -> false
+    }
 }
 
-fun Event.isPoll(): Boolean = getClearType() == EventType.POLL_START || getClearType() == EventType.POLL_END
+fun Event.isLocationMessage(): Boolean {
+    return when (getMsgType()) {
+        MessageType.MSGTYPE_LOCATION -> true
+        else                         -> false
+    }
+}
+
+fun Event.isPoll(): Boolean = getClearType() in EventType.POLL_START || getClearType() in EventType.POLL_END
 
 fun Event.isSticker(): Boolean = getClearType() == EventType.STICKER
 
@@ -372,7 +388,7 @@ fun Event.getRelationContent(): RelationDefaultContent? {
  * Returns the poll question or null otherwise
  */
 fun Event.getPollQuestion(): String? =
-        getPollContent()?.pollCreationInfo?.question?.question
+        getPollContent()?.getBestPollCreationInfo()?.question?.getBestQuestion()
 
 /**
  * Returns the relation content for a specific type or null otherwise
@@ -385,12 +401,12 @@ fun Event.isReply(): Boolean {
 }
 
 fun Event.isReplyRenderedInThread(): Boolean {
-    return isReply() && getRelationContent()?.inReplyTo?.shouldRenderInThread() == true
+    return isReply() && getRelationContent()?.shouldRenderInThread() == true
 }
 
-fun Event.isThread(): Boolean = getRelationContentForType(RelationType.IO_THREAD)?.eventId != null
+fun Event.isThread(): Boolean = getRelationContentForType(RelationType.THREAD)?.eventId != null
 
-fun Event.getRootThreadEventId(): String? = getRelationContentForType(RelationType.IO_THREAD)?.eventId
+fun Event.getRootThreadEventId(): String? = getRelationContentForType(RelationType.THREAD)?.eventId
 
 fun Event.isEdition(): Boolean {
     return getRelationContentForType(RelationType.REPLACE)?.eventId != null
@@ -406,3 +422,5 @@ fun Event.isInvitation(): Boolean = type == EventType.STATE_ROOM_MEMBER &&
 fun Event.getPollContent(): MessagePollContent? {
     return content.toModel<MessagePollContent>()
 }
+
+fun Event.supportsNotification() = this.getClearType() in EventType.MESSAGE + EventType.POLL_START

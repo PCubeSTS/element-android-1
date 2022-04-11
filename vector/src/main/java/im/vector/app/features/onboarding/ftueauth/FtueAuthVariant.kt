@@ -31,7 +31,7 @@ import im.vector.app.R
 import im.vector.app.core.extensions.POP_BACK_STACK_EXCLUSIVE
 import im.vector.app.core.extensions.addFragment
 import im.vector.app.core.extensions.addFragmentToBackstack
-import im.vector.app.core.extensions.exhaustive
+import im.vector.app.core.extensions.popBackstack
 import im.vector.app.core.extensions.replaceFragment
 import im.vector.app.core.platform.ScreenOrientationLocker
 import im.vector.app.core.platform.VectorBaseActivity
@@ -121,16 +121,8 @@ class FtueAuthVariant(
 
     private fun updateWithState(viewState: OnboardingViewState) {
         isForceLoginFallbackEnabled = viewState.isForceLoginFallbackEnabled
-        views.loginLoading.isVisible = shouldShowLoading(viewState)
+        views.loginLoading.isVisible = viewState.isLoading
     }
-
-    private fun shouldShowLoading(viewState: OnboardingViewState) =
-            if (vectorFeatures.isOnboardingPersonalizeEnabled()) {
-                viewState.isLoading()
-            } else {
-                // Keep loading when during success because of the delay when switching to the next Activity
-                viewState.isLoading() || viewState.isAuthTaskCompleted()
-            }
 
     override fun setIsLoading(isLoading: Boolean) = Unit
 
@@ -145,10 +137,14 @@ class FtueAuthVariant(
                         // Go on with registration flow
                         handleRegistrationNavigation(viewEvents.flowResult)
                     } else {
-                        // First ask for login and password
-                        // I add a tag to indicate that this fragment is a registration stage.
-                        // This way it will be automatically popped in when starting the next registration stage
-                        openAuthLoginFragmentWithTag(FRAGMENT_REGISTRATION_STAGE_TAG)
+                        if (vectorFeatures.isOnboardingCombinedRegisterEnabled()) {
+                            openCombinedRegister()
+                        } else {
+                            // First ask for login and password
+                            // I add a tag to indicate that this fragment is a registration stage.
+                            // This way it will be automatically popped in when starting the next registration stage
+                            openAuthLoginFragmentWithTag(FRAGMENT_REGISTRATION_STAGE_TAG)
+                        }
                     }
                 }
             }
@@ -229,13 +225,32 @@ class FtueAuthVariant(
                         FtueAuthUseCaseFragment::class.java,
                         option = commonOption)
             }
-            OnboardingViewEvents.OnAccountCreated                              -> onAccountCreated()
+            OnboardingViewEvents.OpenCombinedRegister                          -> openCombinedRegister()
+            is OnboardingViewEvents.OnAccountCreated                           -> onAccountCreated()
             OnboardingViewEvents.OnAccountSignedIn                             -> onAccountSignedIn()
-            OnboardingViewEvents.OnPersonalizeProfile                          -> onPersonalizeProfile()
+            OnboardingViewEvents.OnChooseDisplayName                           -> onChooseDisplayName()
             OnboardingViewEvents.OnTakeMeHome                                  -> navigateToHome(createdAccount = true)
-            OnboardingViewEvents.OnDisplayNameUpdated                          -> onDisplayNameUpdated()
-            OnboardingViewEvents.OnDisplayNameSkipped                          -> onDisplayNameUpdated()
-        }.exhaustive
+            OnboardingViewEvents.OnChooseProfilePicture                        -> onChooseProfilePicture()
+            OnboardingViewEvents.OnPersonalizationComplete                     -> onPersonalizationComplete()
+            OnboardingViewEvents.OnBack                                        -> activity.popBackstack()
+            OnboardingViewEvents.EditServerSelection                           -> {
+                activity.addFragmentToBackstack(
+                        views.loginFragmentContainer,
+                        FtueAuthCombinedServerSelectionFragment::class.java,
+                        option = commonOption
+                )
+            }
+            OnboardingViewEvents.OnHomeserverEdited                            -> activity.popBackstack()
+        }
+    }
+
+    private fun openCombinedRegister() {
+        activity.addFragmentToBackstack(
+                views.loginFragmentContainer,
+                FtueAuthCombinedRegisterFragment::class.java,
+                tag = FRAGMENT_REGISTRATION_STAGE_TAG,
+                option = commonOption
+        )
     }
 
     private fun registrationShouldFallback(registrationFlowResult: OnboardingViewEvents.RegistrationFlowResult) =
@@ -287,23 +302,23 @@ class FtueAuthVariant(
             SignMode.SignUp             -> Unit // This case is processed in handleOnboardingViewEvents
             SignMode.SignIn             -> handleSignInSelected(state)
             SignMode.SignInWithMatrixId -> handleSignInWithMatrixId(state)
-        }.exhaustive
+        }
     }
 
     private fun handleSignInSelected(state: OnboardingViewState) {
         if (isForceLoginFallbackEnabled) {
-            onLoginModeNotSupported(state.loginModeSupportedTypes)
+            onLoginModeNotSupported(state.selectedHomeserver.supportedLoginTypes)
         } else {
             disambiguateLoginMode(state)
         }
     }
 
-    private fun disambiguateLoginMode(state: OnboardingViewState) = when (state.loginMode) {
+    private fun disambiguateLoginMode(state: OnboardingViewState) = when (state.selectedHomeserver.preferredLoginMode) {
         LoginMode.Unknown,
         is LoginMode.Sso      -> error("Developer error")
         is LoginMode.SsoAndPassword,
         LoginMode.Password    -> openAuthLoginFragmentWithTag(FRAGMENT_LOGIN_TAG)
-        LoginMode.Unsupported -> onLoginModeNotSupported(state.loginModeSupportedTypes)
+        LoginMode.Unsupported -> onLoginModeNotSupported(state.selectedHomeserver.supportedLoginTypes)
     }
 
     private fun openAuthLoginFragmentWithTag(tag: String) {
@@ -324,7 +339,7 @@ class FtueAuthVariant(
 
     private fun handleSignInWithMatrixId(state: OnboardingViewState) {
         if (isForceLoginFallbackEnabled) {
-            onLoginModeNotSupported(state.loginModeSupportedTypes)
+            onLoginModeNotSupported(state.selectedHomeserver.supportedLoginTypes)
         } else {
             openAuthLoginFragmentWithTag(FRAGMENT_LOGIN_TAG)
         }
@@ -396,15 +411,12 @@ class FtueAuthVariant(
     }
 
     private fun onAccountCreated() {
-        if (vectorFeatures.isOnboardingPersonalizeEnabled()) {
-            activity.supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-            activity.replaceFragment(
-                    views.loginFragmentContainer,
-                    FtueAuthAccountCreatedFragment::class.java,
-            )
-        } else {
-            navigateToHome(createdAccount = true)
-        }
+        activity.supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        activity.replaceFragment(
+                views.loginFragmentContainer,
+                FtueAuthAccountCreatedFragment::class.java,
+                useCustomAnimation = true
+        )
     }
 
     private fun navigateToHome(createdAccount: Boolean) {
@@ -413,15 +425,26 @@ class FtueAuthVariant(
         activity.finish()
     }
 
-    private fun onPersonalizeProfile() {
+    private fun onChooseDisplayName() {
         activity.addFragmentToBackstack(views.loginFragmentContainer,
                 FtueAuthChooseDisplayNameFragment::class.java,
                 option = commonOption
         )
     }
 
-    private fun onDisplayNameUpdated() {
-        // TODO go to the real profile picture fragment
-        navigateToHome(createdAccount = true)
+    private fun onChooseProfilePicture() {
+        activity.addFragmentToBackstack(views.loginFragmentContainer,
+                FtueAuthChooseProfilePictureFragment::class.java,
+                option = commonOption
+        )
+    }
+
+    private fun onPersonalizationComplete() {
+        activity.supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        activity.replaceFragment(
+                views.loginFragmentContainer,
+                FtueAuthPersonalizationCompleteFragment::class.java,
+                useCustomAnimation = true
+        )
     }
 }

@@ -26,8 +26,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import com.airbnb.mvrx.Fail
-import com.airbnb.mvrx.Incomplete
+import com.airbnb.mvrx.Loading
 import com.airbnb.mvrx.Success
+import com.airbnb.mvrx.Uninitialized
 import com.airbnb.mvrx.args
 import com.airbnb.mvrx.fragmentViewModel
 import com.airbnb.mvrx.withState
@@ -39,7 +40,6 @@ import im.vector.app.core.dialogs.ConfirmationDialogBuilder
 import im.vector.app.core.extensions.cleanup
 import im.vector.app.core.extensions.configureWith
 import im.vector.app.core.extensions.copyOnLongClick
-import im.vector.app.core.extensions.exhaustive
 import im.vector.app.core.extensions.setTextOrHide
 import im.vector.app.core.platform.StateView
 import im.vector.app.core.platform.VectorBaseFragment
@@ -141,7 +141,7 @@ class RoomMemberProfileFragment @Inject constructor(
                 is RoomMemberProfileViewEvents.OnBanActionSuccess          -> Unit
                 is RoomMemberProfileViewEvents.OnIgnoreActionSuccess       -> Unit
                 is RoomMemberProfileViewEvents.OnInviteActionSuccess       -> Unit
-            }.exhaustive
+            }
         }
         setupLongClicks()
     }
@@ -206,18 +206,19 @@ class RoomMemberProfileFragment @Inject constructor(
 
     override fun invalidate() = withState(viewModel) { state ->
         when (val asyncUserMatrixItem = state.userMatrixItem) {
-            is Incomplete -> {
+            Uninitialized,
+            is Loading -> {
                 views.matrixProfileToolbarTitleView.text = state.userId
                 avatarRenderer.render(MatrixItem.UserItem(state.userId, null, null), views.matrixProfileToolbarAvatarImageView)
                 headerViews.memberProfileStateView.state = StateView.State.Loading
             }
-            is Fail       -> {
+            is Fail    -> {
                 avatarRenderer.render(MatrixItem.UserItem(state.userId, null, null), views.matrixProfileToolbarAvatarImageView)
                 views.matrixProfileToolbarTitleView.text = state.userId
                 val failureMessage = errorFormatter.toHumanReadable(asyncUserMatrixItem.error)
                 headerViews.memberProfileStateView.state = StateView.State.Error(failureMessage)
             }
-            is Success    -> {
+            is Success -> {
                 val userMatrixItem = asyncUserMatrixItem()
                 headerViews.memberProfileStateView.state = StateView.State.Content
                 headerViews.memberProfileIdView.text = userMatrixItem.id

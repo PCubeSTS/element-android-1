@@ -32,6 +32,7 @@ import im.vector.app.features.login.terms.LoginTermsViewState
 import im.vector.app.features.login.terms.PolicyController
 import im.vector.app.features.onboarding.OnboardingAction
 import im.vector.app.features.onboarding.OnboardingViewState
+import im.vector.app.features.onboarding.RegisterAction
 import im.vector.app.features.onboarding.ftueauth.AbstractFtueAuthFragment
 import kotlinx.parcelize.Parcelize
 import org.matrix.android.sdk.internal.auth.registration.LocalizedFlowDataLoginTerms
@@ -111,15 +112,15 @@ class FtueAuthTermsFragment @Inject constructor(
     }
 
     private fun submit() {
-        viewModel.handle(OnboardingAction.AcceptTerms)
+        viewModel.handle(OnboardingAction.PostRegisterAction(RegisterAction.AcceptTerms))
     }
 
     override fun updateWithState(state: OnboardingViewState) {
-        policyController.homeServer = state.homeServerUrlFromUser.toReducedUrl()
+        policyController.homeServer = state.selectedHomeserver.userFacingUrl.toReducedUrl()
         renderState()
     }
 
     override fun resetViewModel() {
-        viewModel.handle(OnboardingAction.ResetLogin)
+        viewModel.handle(OnboardingAction.ResetAuthenticationAttempt)
     }
 }
