@@ -19,6 +19,7 @@ package im.vector.app.features.home
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Paint
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.app.ActivityOptionsCompat
@@ -96,6 +98,14 @@ class HomeDrawerFragment @Inject constructor(
                 views.homeDrawerUserIdView.text = user.userId
             }
         }
+
+
+//        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+//            (R.style.Widget_Vector_Button_Text_impoDark) //when dark mode is enabled, we use the dark theme
+//        } else {
+//            (R.style.Widget_Vector_Button_Text_impo)  //default app theme
+//        }
+
         // Profile
         views.homeDrawerHeader.debouncedClicks {
             sharedActionViewModel.post(HomeActivitySharedAction.CloseDrawer)
