@@ -51,8 +51,9 @@
 
     <!--extras -->
 
-    <color name="palette_lighterrr">#2b375e</color>
-    <color name="palette_lighterrr1">#2b375e</color>
-    <color name="palette_chatscfab">#32a3fd</color>
+    <color name="palette_lighterrr">#99a7c0</color>
+    <color name="palette_lighterrr1">#CDD5DB</color>
+    <color name="palette_chatscfab">#99a7c0</color>
+
 
 </resources>

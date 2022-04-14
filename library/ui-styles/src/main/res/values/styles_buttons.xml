@@ -35,8 +35,8 @@
 
 
     <style name="VectorMaterialNew">
-        <item name="colorPrimary">@color/palette_element_darkbluee</item>
-        <item name="colorSecondary">@color/palette_element_darkbluee</item>
+        <item name="colorPrimary">@color/palette_lighterrr</item>
+        <item name="colorSecondary">@color/palette_lighterrr</item>
     </style>
 
 
@@ -107,9 +107,9 @@
 <!--    </style>-->
 
     <style name="Widget.Vector.Button.Text.impo" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="colorControlHighlight">@color/palette_element_darkbluee</item>
-        <item name="colorPrimary">@color/palette_element_darkbluee</item>
-        <item name="colorSecondary">@color/palette_element_darkbluee</item>
+        <item name="colorControlHighlight">@color/palette_lighterrr</item>
+        <item name="colorPrimary">@color/palette_lighterrr</item>
+        <item name="colorSecondary">@color/palette_lighterrr</item>
         <item name="materialThemeOverlay">@style/VectorMaterialNew</item>
         <item name="android:textAppearance">@style/TextAppearance.Vector.Button</item>
         <item name="cornerRadius">8dp</item>
