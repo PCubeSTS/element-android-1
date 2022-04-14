@@ -179,7 +179,7 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/a11y_jump_to_bottom"
         android:src="@drawable/ic_expand_more"
-        app:backgroundTint="#FFFFFF"
+        app:backgroundTint="@color/palette_chatsfab2"
         app:badgeBackgroundColor="?colorPrimary"
         app:badgeTextColor="?colorOnPrimary"
         app:badgeTextPadding="2dp"
