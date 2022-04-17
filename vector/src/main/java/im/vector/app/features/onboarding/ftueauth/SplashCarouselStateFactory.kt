@@ -45,19 +45,19 @@ class SplashCarouselStateFactory @Inject constructor(
                 SplashCarouselState.Item(
                         R.string.ftue_auth_carousel_secure_title.colorTerminatingFullStop(R.attr.colorAccent),
                         R.string.ftue_auth_carousel_secure_body,
-                        hero(R.drawable.ic_splash_conversations, R.drawable.ic_splash_conversations_dark),
+                        hero(R.drawable.ic_communities_globe, R.drawable.ic_communities_globe),
                         background(R.drawable.bg_carousel_page_1)
                 ),
                 SplashCarouselState.Item(
                         R.string.ftue_auth_carousel_control_title.colorTerminatingFullStop(R.attr.colorAccent),
                         R.string.ftue_auth_carousel_control_body,
-                        hero(R.drawable.ic_splash_control, R.drawable.ic_splash_control_dark),
+                        hero(R.drawable.ic_splash_conversations, R.drawable.ic_splash_conversations_dark),
                         background(R.drawable.bg_carousel_page_2)
                 ),
                 SplashCarouselState.Item(
                         R.string.ftue_auth_carousel_encrypted_title.colorTerminatingFullStop(R.attr.colorAccent),
                         R.string.ftue_auth_carousel_encrypted_body,
-                        hero(R.drawable.ic_splash_secure, R.drawable.ic_splash_secure_dark),
+                        hero(R.drawable.ic_holedo_slider3, R.drawable.ic_holedo_slider3),
                         background(R.drawable.bg_carousel_page_3)
                 ),
                 SplashCarouselState.Item(
