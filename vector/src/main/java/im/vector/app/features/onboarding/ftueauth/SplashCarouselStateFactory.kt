@@ -45,25 +45,25 @@ class SplashCarouselStateFactory @Inject constructor(
                 SplashCarouselState.Item(
                         R.string.ftue_auth_carousel_secure_title.colorTerminatingFullStop(R.attr.colorAccent),
                         R.string.ftue_auth_carousel_secure_body,
-                        hero(R.drawable.holedologo, R.drawable.holedologo),
+                        hero(R.drawable.ic_screen_1, R.drawable.ic_screen_1),
                         background(R.drawable.bg_carousel_page_1)
                 ),
                 SplashCarouselState.Item(
                         R.string.ftue_auth_carousel_control_title.colorTerminatingFullStop(R.attr.colorAccent),
                         R.string.ftue_auth_carousel_control_body,
-                        hero(R.drawable.ic_splash_conversations, R.drawable.ic_splash_conversations_dark),
+                        hero(R.drawable.ic_screen_2, R.drawable.ic_screen_2),
                         background(R.drawable.bg_carousel_page_2)
                 ),
                 SplashCarouselState.Item(
                         R.string.ftue_auth_carousel_encrypted_title.colorTerminatingFullStop(R.attr.colorAccent),
                         R.string.ftue_auth_carousel_encrypted_body,
-                        hero(R.drawable.ic_holedo_slider3, R.drawable.ic_holedo_slider3),
+                        hero(R.drawable.ic_screen_3, R.drawable.ic_screen_3),
                         background(R.drawable.bg_carousel_page_3)
                 ),
                 SplashCarouselState.Item(
                         collaborationTitle().colorTerminatingFullStop(R.attr.colorAccent),
                         R.string.ftue_auth_carousel_workplace_body,
-                        hero(R.drawable.ic_splash_collaboration, R.drawable.ic_splash_collaboration_dark),
+                        hero(R.drawable.ic_screen_4, R.drawable.ic_screen_4),
                         background(R.drawable.bg_carousel_page_4)
                 )
         ))
