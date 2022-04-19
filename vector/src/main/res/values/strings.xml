@@ -634,7 +634,7 @@
     <string name="room_participants_action_ignore">Ignore</string>
 
     <string name="room_participants_action_unignore_title">Unignore user</string>
-    <string name="room_participants_action_unignore_prompt_msg">Unignoring this user will show all messages from them again.</string>
+    <string name="room_participants_action_unignore_prompt_msg">Unignoring this user will show all messages from them again.\n\nNote that this action will restart the app and it may take some time.</string>
     <string name="room_participants_action_unignore">Unignore</string>
 
     <string name="room_participants_action_cancel_invite_title">Cancel invite</string>
@@ -739,6 +739,9 @@
     <string name="threads_beta_enable_notice_title">Threads Beta</string>
     <!-- %s will be replaced with action_learn_more string resource that will be clickable(url redirection)  -->
     <string name="threads_beta_enable_notice_message">Threads help keep your conversations on-topic and easy to track. %sEnabling threads will refresh the app. This may take longer for some accounts.</string>
+    <string name="threads_labs_enable_notice_title">Threads Beta</string>
+    <string name="threads_labs_enable_notice_message">Your homeserver does not currently support threads, so this feature may be unreliable. Some threaded messages may not be reliably available. %sDo you want to enable threads anyway?</string>
+
 
     <!-- Search -->
     <string name="search_hint">Search</string>
@@ -1055,6 +1058,11 @@
     <string name="media_saving_period_1_week">1 week</string>
     <string name="media_saving_period_1_month">1 month</string>
     <string name="media_saving_period_forever">Forever</string>
+
+    <!-- Presence settings -->
+    <string name="settings_presence">Presence</string>
+    <string name="settings_presence_user_always_appears_offline">Offline mode</string>
+    <string name="settings_presence_user_always_appears_offline_summary">If enabled, you will always appear offline to other users, even when using the application.</string>
 
     <!-- Room Settings -->
 
@@ -1655,7 +1663,8 @@
     <string name="you_may_contact_me">You may contact me if you have any follow up questions</string>
     <string name="feedback_sent">Thanks, your feedback has been successfully sent</string>
     <string name="feedback_failed">The feedback failed to be sent (%s)</string>
-    <string name="give_feedback">Give Feedback</string>
+    <!-- TODO TO BE REMOVED -->
+    <string name="give_feedback" tools:ignore="UnusedResources">Give Feedback</string>
     <string name="give_feedback_threads">Give Feedback</string>
     <string name="send_feedback_threads_title">Threads Beta feedback</string>
     <string name="send_feedback_threads_info">Threads are a work in progress with new, exciting upcoming features, such as improved notifications. We’d love to hear your feedback!</string>
@@ -2116,6 +2125,7 @@
     <string name="sent_a_reaction">Reacted with: %s</string>
     <string name="sent_verification_conclusion">Verification Conclusion</string>
     <string name="sent_location">Shared their location</string>
+    <string name="sent_live_location">Shared their live location</string>
 
     <string name="verification_request_waiting">Waiting…</string>
     <string name="verification_request_other_cancelled">%s cancelled</string>
@@ -2993,6 +3003,7 @@
     <string name="labs_render_locations_in_timeline">Render user locations in the timeline</string>
     <string name="location_timeline_failed_to_load_map">Failed to load map</string>
     <string name="location_share_live_enabled">Live location enabled</string>
+    <string name="location_share_live_started">Loading live location…</string>
     <string name="location_share_live_stop">Stop</string>
     <string name="live_location_sharing_notification_title">${app_name} Live Location</string>
     <string name="live_location_sharing_notification_description">Location sharing is in progress</string>
