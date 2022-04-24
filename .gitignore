@@ -22,3 +22,5 @@
 *.apk
 *.ap_
 *.aab
+
+*.hprof

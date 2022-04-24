@@ -46,8 +46,11 @@ class SplashCarouselStateFactory @Inject constructor(
                         R.string.ftue_auth_carousel_secure_title.colorTerminatingFullStop(R.attr.colorAccent),
                         R.string.ftue_auth_carousel_secure_body,
                         hero(R.drawable.ic_screen_1, R.drawable.ic_screen_1),
+
                         background(R.drawable.bg_carousel_page_1)
+
                 ),
+                // testing
                 SplashCarouselState.Item(
                         R.string.ftue_auth_carousel_control_title.colorTerminatingFullStop(R.attr.colorAccent),
                         R.string.ftue_auth_carousel_control_body,
