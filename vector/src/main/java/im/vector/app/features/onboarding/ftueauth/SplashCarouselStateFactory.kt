@@ -50,6 +50,7 @@ class SplashCarouselStateFactory @Inject constructor(
                         background(R.drawable.bg_carousel_page_1)
 
                 ),
+
                 // testing
                 SplashCarouselState.Item(
                         R.string.ftue_auth_carousel_control_title.colorTerminatingFullStop(R.attr.colorAccent),
