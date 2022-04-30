@@ -206,6 +206,7 @@ class VectorApplication :
             Timber.i("App process started")
             authenticationService.getLastAuthenticatedSession()?.startSyncing(appContext)
             ProcessLifecycleOwner.get().lifecycle.removeObserver(this)
+
         }
     }
 
