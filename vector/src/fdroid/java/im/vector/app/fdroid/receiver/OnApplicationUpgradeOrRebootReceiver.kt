@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package im.vector.app.fdroid.receiver
+package com.holedo.app.fdroid.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import im.vector.app.core.extensions.singletonEntryPoint
-import im.vector.app.fdroid.BackgroundSyncStarter
+import com.holedo.app.core.extensions.singletonEntryPoint
+import com.holedo.app.fdroid.BackgroundSyncStarter
 import timber.log.Timber
 
 class OnApplicationUpgradeOrRebootReceiver : BroadcastReceiver() {

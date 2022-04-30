@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package im.vector.app.config
+package com.holedo.app.config
 
-import im.vector.app.BuildConfig
-import im.vector.app.features.analytics.AnalyticsConfig
+import com.holedo.app.BuildConfig
+import com.holedo.app.features.analytics.AnalyticsConfig
 
 val analyticsConfig: AnalyticsConfig = object : AnalyticsConfig {
-    override val isEnabled = BuildConfig.APPLICATION_ID == "im.vector.app"
+    override val isEnabled = BuildConfig.APPLICATION_ID == "com.holedo.app"
     override val postHogHost = "https://posthog.hss.element.io"
     override val postHogApiKey = "phc_Jzsm6DTm6V2705zeU5dcNvQDlonOR68XvX2sh1sEOHO"
     override val policyLink = "https://element.io/cookie-policy"

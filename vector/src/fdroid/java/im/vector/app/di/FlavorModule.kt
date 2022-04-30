@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package im.vector.app.di
+package com.holedo.app.di
 
 import android.content.Context
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import im.vector.app.core.services.GuardServiceStarter
-import im.vector.app.fdroid.service.FDroidGuardServiceStarter
-import im.vector.app.features.settings.VectorPreferences
+import com.holedo.app.core.services.GuardServiceStarter
+import com.holedo.app.fdroid.service.FDroidGuardServiceStarter
+import com.holedo.app.features.settings.VectorPreferences
 
 @InstallIn(SingletonComponent::class)
 @Module

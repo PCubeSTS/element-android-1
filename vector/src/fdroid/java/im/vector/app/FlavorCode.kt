@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package im.vector.app
+package com.holedo.app
 
 import android.content.Context
 

@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package im.vector.app.core.di
+package com.holedo.app.core.di
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import im.vector.app.features.DefaultVectorFeatures
-import im.vector.app.features.DefaultVectorOverrides
-import im.vector.app.features.VectorFeatures
-import im.vector.app.features.VectorOverrides
+import com.holedo.app.features.DefaultVectorFeatures
+import com.holedo.app.features.DefaultVectorOverrides
+import com.holedo.app.features.VectorFeatures
+import com.holedo.app.features.VectorOverrides
 
 @InstallIn(SingletonComponent::class)
 @Module
