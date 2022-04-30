@@ -256,17 +256,20 @@ class HomeDrawerFragment @Inject constructor(
         }
 
         views.help1.setOnClickListener {
-            val calci12 = sharedActionViewModel.session.myUserId
-            val calci13 = calci12.replace(":holedo.com", "")
-            val calci14 = calci13.replace("@", "")
+//            val calci12 = sharedActionViewModel.session.myUserId
+//            val calci13 = calci12.replace(":holedo.com", "")
+//            val calci14 = calci13.replace("@", "")
 //            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://jobs.holedo.im/?u=$calci14"))
 //            startActivity(i)
 
-            val  urll19 = "https://jobs.holedo.im/?u=$calci14"
+//            val  urll19 = "https://jobs.holedo.im/?u=$calci14"
+
 //            val intent13  = Intent(requireContext(), VectorWebViewActivity::class.java)
 //            intent13.putExtra("URL18",urll19)
 //            startActivity(intent13)
 
+
+            val  urll19 = "https://www.holedo.im/help"
 
             val intentad  = VectorWebViewActivity.getIntent(requireContext(), urll19)
             startActivity(intentad)
